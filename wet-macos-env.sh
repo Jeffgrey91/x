@@ -1,7 +1,7 @@
 #!/bin/bash
 ####################################################################
 #                          macOS defaults                          #
-# Please modify webui-user.sh to change these instead of this file #
+# Please modify wet-user.sh to change these instead of this file #
 ####################################################################
 
 if [[ -x "$(command -v python3.10)" ]]

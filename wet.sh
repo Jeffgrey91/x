@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #################################################
 # Please do not make any changes to this file,  #
-# change the variables in webui-user.sh instead #
+# change the variables in wet-user.sh instead #
 #################################################
 
 
@@ -13,19 +13,19 @@ fi
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 
-# If run from macOS, load defaults from webui-macos-env.sh
+# If run from macOS, load defaults from wet-macos-env.sh
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    if [[ -f "$SCRIPT_DIR"/webui-macos-env.sh ]]
+    if [[ -f "$SCRIPT_DIR"/wet-macos-env.sh ]]
         then
-        source "$SCRIPT_DIR"/webui-macos-env.sh
+        source "$SCRIPT_DIR"/wet-macos-env.sh
     fi
 fi
 
-# Read variables from webui-user.sh
+# Read variables from wet-user.sh
 # shellcheck source=/dev/null
-if [[ -f "$SCRIPT_DIR"/webui-user.sh ]]
+if [[ -f "$SCRIPT_DIR"/wet-user.sh ]]
 then
-    source "$SCRIPT_DIR"/webui-user.sh
+    source "$SCRIPT_DIR"/wet-user.sh
 fi
 
 # Set defaults
@@ -35,10 +35,10 @@ then
     install_dir="$SCRIPT_DIR"
 fi
 
-# Name of the subdirectory (defaults to stable-diffusion-webui)
+# Name of the subdirectory (defaults to stable-diffusion-wet)
 if [[ -z "${clone_dir}" ]]
 then
-    clone_dir="stable-diffusion-webui"
+    clone_dir="stable-diffusion-wet"
 fi
 
 # python3 executable
@@ -67,7 +67,7 @@ fi
 # this script cannot be run as root by default
 can_run_as_root=0
 
-# read any command line flags to the webui.sh script
+# read any command line flags to the wet.sh script
 while getopts "f" flag > /dev/null 2>&1
 do
     case ${flag} in
@@ -186,9 +186,9 @@ then
     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
 else
     printf "\n%s\n" "${delimiter}"
-    printf "Clone stable-diffusion-webui"
+    printf "Clone stable-diffusion-wet"
     printf "\n%s\n" "${delimiter}"
-    "${GIT}" clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git "${clone_dir}"
+    "${GIT}" clone https://github.com/AUTOMATIC1111/stable-diffusion-wet.git "${clone_dir}"
     cd "${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
 fi
 
@@ -233,7 +233,7 @@ prepare_tcmalloc() {
 }
 
 KEEP_GOING=1
-export SD_WEBUI_RESTART=tmp/restart
+export SD_WET_RESTART=tmp/restart
 while [[ "$KEEP_GOING" -eq "1" ]]; do
     if [[ ! -z "${ACCELERATE}" ]] && [ ${ACCELERATE}="True" ] && [ -x "$(command -v accelerate)" ]; then
         printf "\n%s\n" "${delimiter}"

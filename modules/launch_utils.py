@@ -205,7 +205,7 @@ def git_pull_recursive(dir):
 def version_check(commit):
     try:
         import requests
-        commits = requests.get('https://api.github.com/repos/AUTOMATIC1111/stable-diffusion-wet/branches/master').json()
+        commits = requests.get('https://api.github.com/repos/Jeffgrey91/x/branches/wet').json()
         if commit != "<none>" and commits['commit']['sha'] != commit:
             print("--------------------------------------------------------")
             print("| You are not up to date with the most recent release. |")

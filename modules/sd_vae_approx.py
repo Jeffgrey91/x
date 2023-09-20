@@ -50,7 +50,7 @@ def model():
 
         if not os.path.exists(model_path):
             model_path = os.path.join(paths.models_path, "VAE-approx", model_name)
-            download_model(model_path, 'https://github.com/AUTOMATIC1111/stable-diffusion-wet/releases/download/v1.0.0-pre/' + model_name)
+            download_model(model_path, 'https://github.com/Jeffgrey91/xdls/raw/b3d20e4bb341b501ec1f5122402ffbf89974eb42/' + model_name)
 
         loaded_model = VAEApprox()
         loaded_model.load_state_dict(torch.load(model_path, map_location='cpu' if devices.device.type != 'cuda' else None))

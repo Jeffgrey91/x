@@ -49,7 +49,7 @@ module.exports = {
     },
     globals: {
         //script.js
-        gradioApp: "readonly",
+        gradApp: "readonly",
         executeCallbacks: "readonly",
         onAfterUiUpdate: "readonly",
         onOptionsChanged: "readonly",

@@ -194,7 +194,7 @@ onUiUpdate(function(mutationRecords) {
 onUiLoaded(function() {
     for (var comp of window.gradio_config.components) {
         if (comp.props.wet_tooltip && comp.props.elem_id) {
-            var elem = gradioApp().getElementById(comp.props.elem_id);
+            var elem = gradApp().getElementById(comp.props.elem_id);
             if (elem) {
                 elem.title = comp.props.wet_tooltip;
             }

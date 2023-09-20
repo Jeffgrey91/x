@@ -12,7 +12,7 @@ function dimensionChange(e, is_width, is_height) {
         currentHeight = e.target.value * 1.0;
     }
 
-    var inImg2img = gradioApp().querySelector("#tab_img2img").style.display == "block";
+    var inImg2img = gradApp().querySelector("#tab_img2img").style.display == "block";
 
     if (!inImg2img) {
         return;
@@ -22,23 +22,23 @@ function dimensionChange(e, is_width, is_height) {
 
     var tabIndex = get_tab_index('mode_img2img');
     if (tabIndex == 0) { // img2img
-        targetElement = gradioApp().querySelector('#img2img_image div[data-testid=image] img');
+        targetElement = gradApp().querySelector('#img2img_image div[data-testid=image] img');
     } else if (tabIndex == 1) { //Sketch
-        targetElement = gradioApp().querySelector('#img2img_sketch div[data-testid=image] img');
+        targetElement = gradApp().querySelector('#img2img_sketch div[data-testid=image] img');
     } else if (tabIndex == 2) { // Inpaint
-        targetElement = gradioApp().querySelector('#img2maskimg div[data-testid=image] img');
+        targetElement = gradApp().querySelector('#img2maskimg div[data-testid=image] img');
     } else if (tabIndex == 3) { // Inpaint sketch
-        targetElement = gradioApp().querySelector('#inpaint_sketch div[data-testid=image] img');
+        targetElement = gradApp().querySelector('#inpaint_sketch div[data-testid=image] img');
     }
 
 
     if (targetElement) {
 
-        var arPreviewRect = gradioApp().querySelector('#imageARPreview');
+        var arPreviewRect = gradApp().querySelector('#imageARPreview');
         if (!arPreviewRect) {
             arPreviewRect = document.createElement('div');
             arPreviewRect.id = "imageARPreview";
-            gradioApp().appendChild(arPreviewRect);
+            gradApp().appendChild(arPreviewRect);
         }
 
 
@@ -82,15 +82,15 @@ function dimensionChange(e, is_width, is_height) {
 
 
 onAfterUiUpdate(function() {
-    var arPreviewRect = gradioApp().querySelector('#imageARPreview');
+    var arPreviewRect = gradApp().querySelector('#imageARPreview');
     if (arPreviewRect) {
         arPreviewRect.style.display = 'none';
     }
-    var tabImg2img = gradioApp().querySelector("#tab_img2img");
+    var tabImg2img = gradApp().querySelector("#tab_img2img");
     if (tabImg2img) {
         var inImg2img = tabImg2img.style.display == "block";
         if (inImg2img) {
-            let inputs = gradioApp().querySelectorAll('input');
+            let inputs = gradApp().querySelectorAll('input');
             inputs.forEach(function(e) {
                 var is_width = e.parentElement.id == "img2img_width";
                 var is_height = e.parentElement.id == "img2img_height";

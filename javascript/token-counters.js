@@ -28,7 +28,7 @@ function update_token_counter(button_id) {
         clearTimeout(promptTokenCountTimeouts[button_id]);
     }
     promptTokenCountTimeouts[button_id] = setTimeout(
-        () => gradioApp().getElementById(button_id)?.click(),
+        () => gradApp().getElementById(button_id)?.click(),
         promptTokenCountDebounceTime,
     );
 }
@@ -53,9 +53,9 @@ function recalculate_prompts_img2img() {
 }
 
 function setupTokenCounting(id, id_counter, id_button) {
-    var prompt = gradioApp().getElementById(id);
-    var counter = gradioApp().getElementById(id_counter);
-    var textarea = gradioApp().querySelector(`#${id} > label > textarea`);
+    var prompt = gradApp().getElementById(id);
+    var counter = gradApp().getElementById(id_counter);
+    var textarea = gradApp().querySelector(`#${id} > label > textarea`);
 
     if (opts.disable_token_counters) {
         counter.style.display = "none";

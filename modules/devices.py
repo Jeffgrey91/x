@@ -59,7 +59,7 @@ def enable_tf32():
     if torch.cuda.is_available():
 
         # enabling benchmark option seems to enable a range of cards to do fp16 when they otherwise can't
-        # see https://github.com/AUTOMATIC1111/stable-diffusion-wet/pull/4407
+        # see https://github.com/a1/sdwet/pull/4407
         if any(torch.cuda.get_device_capability(devid) == (7, 5) for devid in range(0, torch.cuda.device_count())):
             torch.backends.cudnn.benchmark = True
 

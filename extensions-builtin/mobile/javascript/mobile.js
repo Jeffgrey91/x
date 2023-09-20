@@ -2,7 +2,7 @@ var isSetupForMobile = false;
 
 function isMobile() {
     for (var tab of ["txt2img", "img2img"]) {
-        var imageTab = gradioApp().getElementById(tab + '_results');
+        var imageTab = gradApp().getElementById(tab + '_results');
         if (imageTab && imageTab.offsetParent && imageTab.offsetLeft == 0) {
             return true;
         }
@@ -17,11 +17,11 @@ function reportWindowSize() {
     isSetupForMobile = currentlyMobile;
 
     for (var tab of ["txt2img", "img2img"]) {
-        var button = gradioApp().getElementById(tab + '_generate_box');
-        var target = gradioApp().getElementById(currentlyMobile ? tab + '_results' : tab + '_actions_column');
+        var button = gradApp().getElementById(tab + '_generate_box');
+        var target = gradApp().getElementById(currentlyMobile ? tab + '_results' : tab + '_actions_column');
         target.insertBefore(button, target.firstElementChild);
 
-        gradioApp().getElementById(tab + '_results').classList.toggle('mobile', currentlyMobile);
+        gradApp().getElementById(tab + '_results').classList.toggle('mobile', currentlyMobile);
     }
 }
 

@@ -108,11 +108,11 @@ function processNode(node) {
 }
 
 function localizeWholePage() {
-    processNode(gradioApp());
+    processNode(gradApp());
 
     function elem(comp) {
         var elem_id = comp.props.elem_id ? comp.props.elem_id : "component-" + comp.id;
-        return gradioApp().getElementById(elem_id);
+        return gradApp().getElementById(elem_id);
     }
 
     for (var comp of window.gradio_config.components) {
@@ -200,6 +200,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 });
             });
-        })).observe(gradioApp(), {childList: true});
+        })).observe(gradApp(), {childList: true});
     }
 });

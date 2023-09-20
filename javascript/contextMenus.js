@@ -11,7 +11,7 @@ var contextMenuInit = function() {
         let posx = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
         let posy = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 
-        let oldMenu = gradioApp().querySelector('#context-menu');
+        let oldMenu = gradApp().querySelector('#context-menu');
         if (oldMenu) {
             oldMenu.remove();
         }
@@ -42,7 +42,7 @@ var contextMenuInit = function() {
 
         });
 
-        gradioApp().appendChild(contextMenu);
+        gradApp().appendChild(contextMenu);
 
         let menuWidth = contextMenu.offsetWidth + 4;
         let menuHeight = contextMenu.offsetHeight + 4;
@@ -97,18 +97,18 @@ var contextMenuInit = function() {
         if (eventListenerApplied) {
             return;
         }
-        gradioApp().addEventListener("click", function(e) {
+        gradApp().addEventListener("click", function(e) {
             if (!e.isTrusted) {
                 return;
             }
 
-            let oldMenu = gradioApp().querySelector('#context-menu');
+            let oldMenu = gradApp().querySelector('#context-menu');
             if (oldMenu) {
                 oldMenu.remove();
             }
         });
-        gradioApp().addEventListener("contextmenu", function(e) {
-            let oldMenu = gradioApp().querySelector('#context-menu');
+        gradApp().addEventListener("contextmenu", function(e) {
+            let oldMenu = gradApp().querySelector('#context-menu');
             if (oldMenu) {
                 oldMenu.remove();
             }
@@ -134,8 +134,8 @@ var addContextMenuEventListener = initResponse[2];
 (function() {
     //Start example Context Menu Items
     let generateOnRepeat = function(genbuttonid, interruptbuttonid) {
-        let genbutton = gradioApp().querySelector(genbuttonid);
-        let interruptbutton = gradioApp().querySelector(interruptbuttonid);
+        let genbutton = gradApp().querySelector(genbuttonid);
+        let interruptbutton = gradApp().querySelector(interruptbuttonid);
         if (!interruptbutton.offsetParent) {
             genbutton.click();
         }

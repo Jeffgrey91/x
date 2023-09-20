@@ -16,16 +16,16 @@ function toggleCss(key, css, enable) {
 }
 
 function setupExtraNetworksForTab(tabname) {
-    gradioApp().querySelector('#' + tabname + '_extra_tabs').classList.add('extra-networks');
+    gradApp().querySelector('#' + tabname + '_extra_tabs').classList.add('extra-networks');
 
-    var tabs = gradioApp().querySelector('#' + tabname + '_extra_tabs > div');
-    var searchDiv = gradioApp().getElementById(tabname + '_extra_search');
+    var tabs = gradApp().querySelector('#' + tabname + '_extra_tabs > div');
+    var searchDiv = gradApp().getElementById(tabname + '_extra_search');
     var search = searchDiv.querySelector('textarea');
-    var sort = gradioApp().getElementById(tabname + '_extra_sort');
-    var sortOrder = gradioApp().getElementById(tabname + '_extra_sortorder');
-    var refresh = gradioApp().getElementById(tabname + '_extra_refresh');
-    var showDirsDiv = gradioApp().getElementById(tabname + '_extra_show_dirs');
-    var showDirs = gradioApp().querySelector('#' + tabname + '_extra_show_dirs input');
+    var sort = gradApp().getElementById(tabname + '_extra_sort');
+    var sortOrder = gradApp().getElementById(tabname + '_extra_sortorder');
+    var refresh = gradApp().getElementById(tabname + '_extra_refresh');
+    var showDirsDiv = gradApp().getElementById(tabname + '_extra_show_dirs');
+    var showDirs = gradApp().querySelector('#' + tabname + '_extra_show_dirs input');
 
     sort.dataset.sortkey = 'sortDefault';
     tabs.appendChild(searchDiv);
@@ -37,7 +37,7 @@ function setupExtraNetworksForTab(tabname) {
     var applyFilter = function() {
         var searchTerm = search.value.toLowerCase();
 
-        gradioApp().querySelectorAll('#' + tabname + '_extra_tabs div.card').forEach(function(elem) {
+        gradApp().querySelectorAll('#' + tabname + '_extra_tabs div.card').forEach(function(elem) {
             var searchOnly = elem.querySelector('.search_only');
             var text = elem.querySelector('.name').textContent.toLowerCase() + " " + elem.querySelector('.search_term').textContent.toLowerCase();
 
@@ -62,7 +62,7 @@ function setupExtraNetworksForTab(tabname) {
 
         sort.dataset.sortkey = sortKeyStore;
 
-        var cards = gradioApp().querySelectorAll('#' + tabname + '_extra_tabs div.card');
+        var cards = gradApp().querySelectorAll('#' + tabname + '_extra_tabs div.card');
         cards.forEach(function(card) {
             card.originalParentElement = card.parentElement;
         });
@@ -121,7 +121,7 @@ function setupExtraNetworks() {
     setupExtraNetworksForTab('img2img');
 
     function registerPrompt(tabname, id) {
-        var textarea = gradioApp().querySelector("#" + id + " > label > textarea");
+        var textarea = gradApp().querySelector("#" + id + " > label > textarea");
 
         if (!activePromptTextarea[tabname]) {
             activePromptTextarea[tabname] = textarea;
@@ -183,7 +183,7 @@ function tryToRemoveExtraNetworkFromPrompt(textarea, text) {
 }
 
 function cardClicked(tabname, textToAdd, allowNegativePrompt) {
-    var textarea = allowNegativePrompt ? activePromptTextarea[tabname] : gradioApp().querySelector("#" + tabname + "_prompt > label > textarea");
+    var textarea = allowNegativePrompt ? activePromptTextarea[tabname] : gradApp().querySelector("#" + tabname + "_prompt > label > textarea");
 
     if (!tryToRemoveExtraNetworkFromPrompt(textarea, textToAdd)) {
         textarea.value = textarea.value + opts.extra_networks_add_text_separator + textToAdd;
@@ -193,8 +193,8 @@ function cardClicked(tabname, textToAdd, allowNegativePrompt) {
 }
 
 function saveCardPreview(event, tabname, filename) {
-    var textarea = gradioApp().querySelector("#" + tabname + '_preview_filename  > label > textarea');
-    var button = gradioApp().getElementById(tabname + '_save_preview');
+    var textarea = gradApp().querySelector("#" + tabname + '_preview_filename  > label > textarea');
+    var button = gradApp().getElementById(tabname + '_save_preview');
 
     textarea.value = filename;
     updateInput(textarea);
@@ -206,7 +206,7 @@ function saveCardPreview(event, tabname, filename) {
 }
 
 function extraNetworksSearchButton(tabs_id, event) {
-    var searchTextarea = gradioApp().querySelector("#" + tabs_id + ' > label > textarea');
+    var searchTextarea = gradApp().querySelector("#" + tabs_id + ' > label > textarea');
     var button = event.target;
     var text = button.classList.contains("search-all") ? "" : button.textContent.trim();
 
@@ -240,7 +240,7 @@ function popup(contents) {
         globalPopupInner.classList.add('global-popup-inner');
         globalPopup.appendChild(globalPopupInner);
 
-        gradioApp().querySelector('.main').appendChild(globalPopup);
+        gradApp().querySelector('.main').appendChild(globalPopup);
     }
 
     globalPopupInner.innerHTML = '';
@@ -252,7 +252,7 @@ function popup(contents) {
 var storedPopupIds = {};
 function popupId(id) {
     if (!storedPopupIds[id]) {
-        storedPopupIds[id] = gradioApp().getElementById(id);
+        storedPopupIds[id] = gradApp().getElementById(id);
     }
 
     popup(storedPopupIds[id]);
@@ -316,9 +316,9 @@ function extraNetworksEditUserMetadata(event, tabname, extraPage, cardName) {
     var editor = extraPageUserMetadataEditors[id];
     if (!editor) {
         editor = {};
-        editor.page = gradioApp().getElementById(id);
-        editor.nameTextarea = gradioApp().querySelector("#" + id + "_name" + ' textarea');
-        editor.button = gradioApp().querySelector("#" + id + "_button");
+        editor.page = gradApp().getElementById(id);
+        editor.nameTextarea = gradApp().querySelector("#" + id + "_name" + ' textarea');
+        editor.button = gradApp().querySelector("#" + id + "_button");
         extraPageUserMetadataEditors[id] = editor;
     }
 
@@ -335,7 +335,7 @@ function extraNetworksEditUserMetadata(event, tabname, extraPage, cardName) {
 function extraNetworksRefreshSingleCard(page, tabname, name) {
     requestGet("./sd_extra_networks/get-single-card", {page: page, tabname: tabname, name: name}, function(data) {
         if (data && data.html) {
-            var card = gradioApp().querySelector('.card[data-name=' + JSON.stringify(name) + ']'); // likely using the wrong stringify function
+            var card = gradApp().querySelector('.card[data-name=' + JSON.stringify(name) + ']'); // likely using the wrong stringify function
 
             var newDiv = document.createElement('DIV');
             newDiv.innerHTML = data.html;

@@ -6,7 +6,7 @@ let notificationButton = null;
 
 onAfterUiUpdate(function() {
     if (notificationButton == null) {
-        notificationButton = gradioApp().getElementById('request_notifications');
+        notificationButton = gradApp().getElementById('request_notifications');
 
         if (notificationButton != null) {
             notificationButton.addEventListener('click', () => {
@@ -15,7 +15,7 @@ onAfterUiUpdate(function() {
         }
     }
 
-    const galleryPreviews = gradioApp().querySelectorAll('div[id^="tab_"] div[id$="_results"] .thumbnail-item > img');
+    const galleryPreviews = gradApp().querySelectorAll('div[id^="tab_"] div[id$="_results"] .thumbnail-item > img');
 
     if (galleryPreviews == null) return;
 
@@ -26,7 +26,7 @@ onAfterUiUpdate(function() {
     lastHeadImg = headImg;
 
     // play notification sound if available
-    gradioApp().querySelector('#audio_notification audio')?.play();
+    gradApp().querySelector('#audio_notification audio')?.play();
 
     if (document.hasFocus()) return;
 

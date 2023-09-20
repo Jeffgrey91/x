@@ -1,4 +1,4 @@
-function gradioApp() {
+function gradApp() {
     const elems = document.getElementsByTagName('gradio-app');
     const elem = elems.length == 0 ? document : elems[0];
 
@@ -14,14 +14,14 @@ function gradioApp() {
  * Get the currently selected top-level UI tab button (e.g. the button that says "Extras").
  */
 function get_uiCurrentTab() {
-    return gradioApp().querySelector('#tabs > .tab-nav > button.selected');
+    return gradApp().querySelector('#tabs > .tab-nav > button.selected');
 }
 
 /**
  * Get the first currently visible top-level UI tab content (e.g. the div hosting the "txt2img" UI).
  */
 function get_uiCurrentTabContent() {
-    return gradioApp().querySelector('#tabs > .tabitem[id^=tab_]:not([style*="display: none"])');
+    return gradApp().querySelector('#tabs > .tabitem[id^=tab_]:not([style*="display: none"])');
 }
 
 var uiUpdateCallbacks = [];
@@ -104,7 +104,7 @@ var executedOnLoaded = false;
 
 document.addEventListener("DOMContentLoaded", function() {
     var mutationObserver = new MutationObserver(function(m) {
-        if (!executedOnLoaded && gradioApp().querySelector('#txt2img_prompt')) {
+        if (!executedOnLoaded && gradApp().querySelector('#txt2img_prompt')) {
             executedOnLoaded = true;
             executeCallbacks(uiLoadedCallbacks);
         }
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
             executeCallbacks(uiTabChangeCallbacks);
         }
     });
-    mutationObserver.observe(gradioApp(), {childList: true, subtree: true});
+    mutationObserver.observe(gradApp(), {childList: true, subtree: true});
 });
 
 /**

@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from modules.sd_models import CheckpointInfo
 
 
-class WebuiSdModel(LatentDiffusion):
+class WetSdModel(LatentDiffusion):
     """This class is not actually instantinated, but its fields are created and fieeld by wet"""
 
     lowvram: bool

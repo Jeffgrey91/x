@@ -8,19 +8,6 @@ from modules.options import options_section, OptionInfo, OptionHTML
 options_templates = {}
 hide_dirs = shared.hide_dirs
 
-restricted_opts = {
-    "samples_filename_pattern",
-    "directories_filename_pattern",
-    "outdir_samples",
-    "outdir_txt2img_samples",
-    "outdir_img2img_samples",
-    "outdir_extras_samples",
-    "outdir_grids",
-    "outdir_txt2img_grids",
-    "outdir_save",
-    "outdir_init_images"
-}
-
 options_templates.update(options_section(('saving-images', "Saving images/grids"), {
     "samples_save": OptionInfo(True, "Always save all generated images"),
     "samples_format": OptionInfo('png', 'File format for images'),

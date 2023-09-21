@@ -1,51 +1,42 @@
-from modules import launch_utils
+import launch_utils as lu
 
-args = launch_utils.args
-python = launch_utils.python
-git = launch_utils.git
-index_url = launch_utils.index_url
-dir_repos = launch_utils.dir_repos
+config = lu.args
+python = lu.python
+git = lu.git
+index_url = lu.index_url
+repos_dir = lu.dir_repos
+commit = lu.commit_hash
+tag = lu.git_tag
+execute = lu.run
+installed = lu.is_installed
+repo_path = lu.repo_dir
+pip_install = lu.run_pip
+check_python = lu.check_run_python
+clone_repo = lu.git_clone
+pull_repo = lu.git_pull_recursive
+list_extensions = lu.list_extensions
+install_extension = lu.run_extension_installer
+prepare_env = lu.prepare_environment
+configure_tests = lu.configure_for_tests
+start_server = lu.start
 
-commit_hash = launch_utils.commit_hash
-git_tag = launch_utils.git_tag
+def run_program():
+  if config.dump_sysinfo:
+    filenam = lu.dump_sysinfo()
+    print(f"System info saved as {filenam}. Exiting...")
+    exit(0)
+  
+  print('Starting up...')
+  lu.startup_timer.record("initial startup")
 
-run = launch_utils.run
-is_installed = launch_utils.is_installed
-repo_dir = launch_utils.repo_dir
+  with lu.startup_timer.subcategory("prepare environment"):
+    if not config.skip_prepare_environment:
+      prepare_env()
 
-run_pip = launch_utils.run_pip
-check_run_python = launch_utils.check_run_python
-git_clone = launch_utils.git_clone
-git_pull_recursive = launch_utils.git_pull_recursive
-list_extensions = launch_utils.list_extensions
-run_extension_installer = launch_utils.run_extension_installer
-prepare_environment = launch_utils.prepare_environment
-configure_for_tests = launch_utils.configure_for_tests
-start = launch_utils.start
+    if config.test_server:
+      configure_tests()
 
-
-def main():
-    if args.dump_sysinfo:
-        filenam = launch_utils.dump_sysinfo()
-
-        print(f"Sysinfo saved as {filenam}. Exiting...")
-
-        exit(0)
-
-    print('Launching...')
-
-    launch_utils.startup_timer.record("initial startup")
-
-    with launch_utils.startup_timer.subcategory("prepare environment"):
-        if not args.skip_prepare_environment:
-            prepare_environment()
-
-    if args.test_server:
-        configure_for_tests()
-
-    start()
-
+    start_server()
 
 if __name__ == "__main__":
-    main()
-    
+  run_program()

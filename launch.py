@@ -26,11 +26,13 @@ start = launch_utils.start
 
 def main():
     if args.dump_sysinfo:
-        filename = launch_utils.dump_sysinfo()
+        filenam = launch_utils.dump_sysinfo()
 
-        print(f"Sysinfo saved as {filename}. Exiting...")
+        print(f"Sysinfo saved as {filenam}. Exiting...")
 
         exit(0)
+
+    print('Launching...')
 
     launch_utils.startup_timer.record("initial startup")
 
@@ -46,3 +48,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

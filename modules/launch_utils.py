@@ -26,6 +26,9 @@ dir_repos = "repositories"
 # Whether to default to printing command output
 default_command_live = (os.environ.get('WET_LAUNCH_LIVE_OUTPUT') == "1")
 
+
+print('Importing utils...')
+
 if 'GRADIO_ANALYTICS_ENABLED' not in os.environ:
     os.environ['GRADIO_ANALYTICS_ENABLED'] = 'False'
 
